@@ -7,15 +7,18 @@ function Bookshelf(props) {
       <h2 className="bookshelf-title">Currently Reading</h2>
       <div className="bookshelf-books">
         <ol className="books-grid">
-          <li>
-            <Book
-              bookTitle={props.books[0].bookTitle}
-              bookAuthor={props.books[0].bookAuthor}
-              bookCoverURL={props.books[0].bookCoverURL}
-              bookShelf={props.books[0].bookShelf}
-              changeShelf={props.changeShelf}
-            ></Book>
-          </li>
+          {props.books.map((entry,index) => (
+            entry.bookShelf==='currentlyReading' &&
+              <li key={index}>
+                <Book
+                  bookTitle={entry.bookTitle}
+                  bookAuthor={entry.bookAuthor}
+                  bookCoverURL={entry.bookCoverURL}
+                  bookShelf={entry.bookShelf}
+                  changeShelf={props.changeShelf}
+                ></Book>  
+              </li>
+          ))}
         </ol>
       </div>
     </div>

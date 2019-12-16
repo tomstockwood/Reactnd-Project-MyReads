@@ -11,10 +11,25 @@ class BooksApp extends React.Component {
      * users can use the browser's back and forward buttons to navigate between
      * pages, as well as provide a good URL they can bookmark and share.
      */
-    showSearchPage: false
+    showSearchPage: false,
+    books : [
+      {
+      bookTitle : 'To Kill a Mockingbird', 
+      bookAuthor : 'Harper Lee', 
+      bookCoverURL : 'url("http://books.google.com/books/content?id=PGR2AwAAQBAJ&printsec=frontcover&img=1&zoom=1&imgtk=AFLRE73-GnPVEyb7MOCxDzOYF1PTQRuf6nCss9LMNOSWBpxBrz8Pm2_mFtWMMg_Y1dx92HT7cUoQBeSWjs3oEztBVhUeDFQX6-tWlWz1-feexS0mlJPjotcwFqAg6hBYDXuK_bkyHD-y&source=gbs_api")',
+      bookShelf : 'currentlyReading' 
+      }
+    ]
+  }
+
+  changeShelf = event => {
+    let { books } = this.state 
+    books[0].bookShelf = event.target.value
+    this.setState({ books });
   }
 
   render() {
+    console.log(this.state)
     return (
       <div className="app">
         {this.state.showSearchPage ? (
@@ -72,6 +87,8 @@ class BooksApp extends React.Component {
                           bookTitle={'To Kill a Mockingbird'}
                           bookAuthor={'Harper Lee'}
                           bookCoverURL={'url("http://books.google.com/books/content?id=PGR2AwAAQBAJ&printsec=frontcover&img=1&zoom=1&imgtk=AFLRE73-GnPVEyb7MOCxDzOYF1PTQRuf6nCss9LMNOSWBpxBrz8Pm2_mFtWMMg_Y1dx92HT7cUoQBeSWjs3oEztBVhUeDFQX6-tWlWz1-feexS0mlJPjotcwFqAg6hBYDXuK_bkyHD-y&source=gbs_api")'} 
+                          bookShelf={this.state.books[0].bookShelf}
+                          changeShelf={this.changeShelf}
                         ></Book>
                       </li>
                       <li>

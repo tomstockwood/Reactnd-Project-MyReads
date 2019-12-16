@@ -14,6 +14,7 @@ class BooksApp extends React.Component {
      * pages, as well as provide a good URL they can bookmark and share.
      */
     showSearchPage: false,
+    searchText : '',
     books : [
       {
       bookTitle : 'To Kill a Mockingbird', 
@@ -29,6 +30,10 @@ class BooksApp extends React.Component {
     books[0].bookShelf = event.target.value
     this.setState({ books });
   }
+
+  handleSearch = event => {
+    this.setState({ searchText: event.target.value });
+  };
 
   render() {
     console.log(this.state)
@@ -55,8 +60,10 @@ class BooksApp extends React.Component {
           //     <ol className="books-grid"></ol>
           //   </div>
           // </div>
-          <SearchBooks>
-          </SearchBooks>
+          <SearchBooks
+            searchText={this.searchText}
+            handleSearch={this.handleSearch}
+          ></SearchBooks>
         ) : (
           <div className="list-books">
             <div className="list-books-title">

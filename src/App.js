@@ -63,6 +63,7 @@ class BooksApp extends React.Component {
           <SearchBooks
             searchText={this.searchText}
             handleSearch={this.handleSearch}
+            books={this.state.books}
           ></SearchBooks>
         ) : (
           <div className="list-books">

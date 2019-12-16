@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Book from './Book.js';
 
 function SearchBooks(props) {
   return(
@@ -24,7 +25,23 @@ function SearchBooks(props) {
         </div>
       </div>
       <div className="search-books-results">
-        <ol className="books-grid"></ol>
+        <ol className="books-grid">
+          {props.books.map((entry,index) => (
+            // entry.bookTitle===props.searchText &&
+            true &&
+              <li key={index}>
+                {console.log(props.books)}
+                {console.log(props.searchText)}
+                <Book
+                  bookTitle={entry.bookTitle}
+                  bookAuthor={entry.bookAuthor}
+                  bookCoverURL={entry.bookCoverURL}
+                  bookShelf={entry.bookShelf}
+                  changeShelf={props.changeShelf}
+                ></Book>  
+              </li>
+          ))}
+        </ol>
       </div>
     </div>
   )

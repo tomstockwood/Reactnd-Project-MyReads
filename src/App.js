@@ -67,6 +67,20 @@ class BooksApp extends React.Component {
                   bookshelfType={'currentlyReading'}
                   bookshelfTitle={'Currently Reading'}
                 ></Bookshelf>
+
+                <Bookshelf
+                  books={this.state.books}
+                  changeShelf={this.changeShelf}
+                  bookshelfType={'wantToRead'}
+                  bookshelfTitle={'Want to Read'}
+                ></Bookshelf>
+
+                <Bookshelf
+                  books={this.state.books}
+                  changeShelf={this.changeShelf}
+                  bookshelfType={'read'}
+                  bookshelfTitle={'Read'}
+                ></Bookshelf>
                 
                 <div className="bookshelf">
                   <h2 className="bookshelf-title">Currently Reading</h2>

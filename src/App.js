@@ -14,16 +14,30 @@ class BooksApp extends React.Component {
      * pages, as well as provide a good URL they can bookmark and share.
      */
     showSearchPage: false,
-    searchText : '',
+    searchText : "",
+    // TODO: Figure out how to have quotation marks within a string
+    // so that the URLs in state work like they're supposed to
     books : [
       {
-      bookTitle : 'To Kill a Mockingbird', 
-      bookAuthor : 'Harper Lee', 
+      bookTitle : "To Kill a Mockingbird", 
+      bookAuthor : "Harper Lee", 
       bookCoverURL : 'url("http://books.google.com/books/content?id=PGR2AwAAQBAJ&printsec=frontcover&img=1&zoom=1&imgtk=AFLRE73-GnPVEyb7MOCxDzOYF1PTQRuf6nCss9LMNOSWBpxBrz8Pm2_mFtWMMg_Y1dx92HT7cUoQBeSWjs3oEztBVhUeDFQX6-tWlWz1-feexS0mlJPjotcwFqAg6hBYDXuK_bkyHD-y&source=gbs_api")',
-      bookShelf : 'currentlyReading' 
+      bookShelf : "currentlyReading" 
+      },
+      {
+        bookTitle : "Ender's Game", 
+        bookAuthor : "Orson Scott Card", 
+        bookCoverURL : 'url("http://books.google.com/books/content?id=yDtCuFHXbAYC&printsec=frontcover&img=1&zoom=1&imgtk=AFLRE72RRiTR6U5OUg3IY_LpHTL2NztVWAuZYNFE8dUuC0VlYabeyegLzpAnDPeWxE6RHi0C2ehrR9Gv20LH2dtjpbcUcs8YnH5VCCAH0Y2ICaKOTvrZTCObQbsfp4UbDqQyGISCZfGN&source=gbs_api")',
+        bookShelf : "currentlyReading" 
       }
     ]
   }
+
+  // TODO: Make changeShelf work so that it can be used for 
+  // any book. I think the way to do this is to turn Book 
+  // into a true component... or maybe it's to give it a generic
+  // thing in state to access, which is then made into the correct
+  // reference for the book that we want to get. 
 
   changeShelf = event => {
     let { books } = this.state 

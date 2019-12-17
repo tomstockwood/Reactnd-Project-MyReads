@@ -26,9 +26,15 @@ function SearchBooks(props) {
       </div>
       <div className="search-books-results">
         <ol className="books-grid">
+          {/* Takes the books prop and only outputs those books
+          whose author/title contains the searchText. It also 
+          only outputs if there's an entry in the searchText */}
           {props.books.map((entry,index) => (
-            (entry.bookTitle===props.searchText
-            || entry.bookAuthor===props.searchText)
+            (
+              (entry.bookTitle.includes(props.searchText)
+              || entry.bookAuthor.includes(props.searchText))
+              && (props.searchText !== "")
+            )
              &&
             // true &&
               <li key={index}>

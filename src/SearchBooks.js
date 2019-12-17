@@ -27,8 +27,10 @@ function SearchBooks(props) {
       <div className="search-books-results">
         <ol className="books-grid">
           {props.books.map((entry,index) => (
-            // entry.bookTitle===props.searchText &&
-            true &&
+            (entry.bookTitle===props.searchText
+            || entry.bookAuthor===props.searchText)
+             &&
+            // true &&
               <li key={index}>
                 {console.log(props.books)}
                 {console.log(props.searchText)}

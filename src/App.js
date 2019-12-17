@@ -1,5 +1,5 @@
 import React from 'react'
-// import * as BooksAPI from './BooksAPI'
+import * as BooksAPI from './BooksAPI'
 import './App.css'
 import Book from './Book.js'
 import Bookshelf from './Bookshelf.js'
@@ -17,6 +17,7 @@ class BooksApp extends React.Component {
     searchText : "",
     // TODO: Figure out how to have quotation marks within a string
     // so that the URLs in state work like they're supposed to
+    
     books : [
       {
       bookTitle : "To Kill a Mockingbird", 
@@ -30,8 +31,19 @@ class BooksApp extends React.Component {
         bookCoverURL : 'url("http://books.google.com/books/content?id=yDtCuFHXbAYC&printsec=frontcover&img=1&zoom=1&imgtk=AFLRE72RRiTR6U5OUg3IY_LpHTL2NztVWAuZYNFE8dUuC0VlYabeyegLzpAnDPeWxE6RHi0C2ehrR9Gv20LH2dtjpbcUcs8YnH5VCCAH0Y2ICaKOTvrZTCObQbsfp4UbDqQyGISCZfGN&source=gbs_api")',
         bookShelf : "currentlyReading" 
       }
-    ]
+    ],
+    books2 : []
   }
+
+  componentDidMount() {
+    BooksAPI.getAll()
+      .then((books2) => {
+        this.setState(() => ({
+          books2
+        }))
+      })
+  }
+
 
   // TODO: Make changeShelf work so that it can be used for 
   // any book. I think the way to do this is to turn Book 
@@ -51,6 +63,7 @@ class BooksApp extends React.Component {
 
   render() {
     console.log(this.state)
+    //console.log(this.BooksAPI)
     return (
       <div className="app">
         {this.state.showSearchPage ? (

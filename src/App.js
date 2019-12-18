@@ -4,6 +4,7 @@ import './App.css'
 import Book from './Book.js'
 import Bookshelf from './Bookshelf.js'
 import SearchBooks from './SearchBooks.js'
+import { filter } from 'lodash'
 
 class BooksApp extends React.Component {
   state = {
@@ -51,9 +52,9 @@ class BooksApp extends React.Component {
   // thing in state to access, which is then made into the correct
   // reference for the book that we want to get. 
 
-  changeShelf = event => {
+  changeShelf = (event, index) => {
     let { books } = this.state 
-    books[0].bookShelf = event.target.value
+    books[index].bookShelf = event.target.value
     this.setState({ books });
   }
 
@@ -65,6 +66,7 @@ class BooksApp extends React.Component {
     console.log(this.state)
     console.log(this.state.books2[2])
     if (this.state.books2.length===0) {return null}
+    console.log(this.state.books2[2].imageLinks)
     return (
       <div className="app">
         {this.state.showSearchPage ? (
@@ -101,23 +103,20 @@ class BooksApp extends React.Component {
             <div className="list-books-content">
               <div>
                 <Bookshelf
-                  books={this.state.books}
+                  books={filter(this.state.books, { bookShelf: 'currentlyReading' })}
                   changeShelf={this.changeShelf}
-                  bookshelfType={'currentlyReading'}
-                  bookshelfTitle={'Currently Reading'}
+                  bookshelfTitle='Currently Reading'
                 ></Bookshelf>
 
                 <Bookshelf
-                  books={this.state.books}
+                  books={filter(this.state.books, { bookShelf: 'wantToRead'})}
                   changeShelf={this.changeShelf}
-                  bookshelfType={'wantToRead'}
                   bookshelfTitle={'Want to Read'}
                 ></Bookshelf>
 
                 <Bookshelf
-                  books={this.state.books}
+                  books={filter(this.state.books, { bookShelf: 'read'})}
                   changeShelf={this.changeShelf}
-                  bookshelfType={'read'}
                   bookshelfTitle={'Read'}
                 ></Bookshelf>
                 
@@ -147,7 +146,6 @@ class BooksApp extends React.Component {
                         <Book
                           bookTitle={this.state.books2[2].title}
                           bookAuthor={this.state.books2[2].authors}
-                          // bookCoverURL={`url(${this.state.books2[2].imageLinks.thumbnail})`}
                           bookCoverURL={this.state.books2[2].imageLinks.thumbnail}
                           bookShelf={this.state.books2[2].shelf}
                           changeShelf={this.changeShelf}

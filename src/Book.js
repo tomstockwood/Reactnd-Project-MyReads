@@ -6,13 +6,11 @@ function Book(props) {
   return(
     <div className="book">
       <div className="book-top">
-        <div className="book-cover">
-           {/* style={{ width: 128, height: 193, backgroundImage: props.bookCoverURL }}> */}
-          <img
-            src={props.bookCoverURL}
-            alt=''
-          ></img>
-        </div>
+        <img className="book-cover"
+          src={props.bookCoverURL}
+          width={128}
+          alt=''
+        ></img>
         <div className="book-shelf-changer">
           <select onChange={props.changeShelf}>
             <option value="move" disabled>Move to...</option>

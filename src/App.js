@@ -16,8 +16,6 @@ class BooksApp extends React.Component {
      */
     showSearchPage: false,
     searchText : "",
-    // TODO: Figure out how to have quotation marks within a string
-    // so that the URLs in state work like they're supposed to
     
     books : [
       {
@@ -94,7 +92,7 @@ class BooksApp extends React.Component {
           <SearchBooks
             searchText={this.state.searchText}
             handleSearch={this.handleSearch}
-            books={this.state.books}
+            books={this.state.books2}
           ></SearchBooks>
         ) : (
           <div className="list-books">

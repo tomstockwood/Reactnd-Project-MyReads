@@ -31,8 +31,8 @@ function SearchBooks(props) {
           only outputs if there's an entry in the searchText */}
           {props.books.map((entry,index) => (
             (
-              (entry.bookTitle.includes(props.searchText)
-              || entry.bookAuthor.includes(props.searchText))
+              (entry.title.includes(props.searchText)
+              || entry.authors.toString().includes(props.searchText))
               && (props.searchText !== "")
             )
              &&
@@ -41,9 +41,14 @@ function SearchBooks(props) {
                 {console.log(props.books)}
                 {console.log(props.searchText)}
                 <Book
-                  bookTitle={entry.bookTitle}
-                  bookAuthor={entry.bookAuthor}
-                  bookCoverURL={entry.bookCoverURL}
+                  bookTitle={entry.title}
+                  // bookAuthor={entry.bookAuthor}
+                  bookAuthor={
+                    entry.authors.length<=1 
+                    ? entry.authors 
+                    : (entry.authors.slice(0,-1).map((entry) => (entry + ", "))).concat(entry.authors[entry.authors.length - 1]) 
+                  }
+                  bookCoverURL={entry.imageLinks.thumbnail}
                   bookShelf={entry.bookShelf}
                   changeShelf={props.changeShelf}
                 ></Book>  

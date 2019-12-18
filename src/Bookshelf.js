@@ -13,7 +13,11 @@ function Bookshelf(props) {
             <li key={entry.id}>
               <Book
                 bookTitle={entry.title}
-                bookAuthor={entry.authors}
+                bookAuthor={
+                  entry.authors.length<=1 
+                  ? entry.authors 
+                  : (entry.authors.slice(0,-1).map((entry) => (entry + ", "))).concat(entry.authors[entry.authors.length - 1]) 
+                }
                 bookCoverURL={entry.imageLinks.thumbnail}
                 bookShelf={entry.shelf}
                 changeShelf={(event) => props.changeShelf(event, entry.id)}

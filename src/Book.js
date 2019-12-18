@@ -1,7 +1,5 @@
 import React from 'react';
 
-// TODO: Figure out what to do if there are multiple authors
-
 function Book(props) {
   return(
     <div className="book">

@@ -67,6 +67,7 @@ class BooksApp extends React.Component {
     console.log(this.state.books2[2])
     if (this.state.books2.length===0) {return null}
     console.log(this.state.books2[2].id)
+    // console.log((this.state.books2[6].authors.slice(0,-1).map((entry) => (entry + ", "))).concat(["xx"]))
     return (
       <div className="app">
         {this.state.showSearchPage ? (

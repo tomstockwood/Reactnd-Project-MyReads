@@ -16,7 +16,6 @@ class BooksApp extends React.Component {
      */
     showSearchPage: false,
     searchText : "",
-    
     books : [
       {
       bookTitle : "To Kill a Mockingbird", 
@@ -59,6 +58,12 @@ class BooksApp extends React.Component {
   handleSearch = event => {
     this.setState({ searchText: event.target.value });
   };
+  
+  closeSearch = event => {
+    this.setState({ showSearchPage: false });
+  };
+
+  
 
   render() {
     console.log(this.state)
@@ -93,6 +98,8 @@ class BooksApp extends React.Component {
             searchText={this.state.searchText}
             handleSearch={this.handleSearch}
             books={this.state.books2}
+            showSearchPage={this.state.showSearchPage}
+            closeSearch={this.closeSearch}
           ></SearchBooks>
         ) : (
           <div className="list-books">

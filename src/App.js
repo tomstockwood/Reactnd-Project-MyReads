@@ -4,7 +4,7 @@ import './App.css'
 import Book from './Book.js'
 import Bookshelf from './Bookshelf.js'
 import SearchBooks from './SearchBooks.js'
-import { filter } from 'lodash'
+import { filter, find } from 'lodash'
 
 class BooksApp extends React.Component {
   state = {
@@ -52,10 +52,10 @@ class BooksApp extends React.Component {
   // thing in state to access, which is then made into the correct
   // reference for the book that we want to get. 
 
-  changeShelf = (event, index) => {
-    let { books } = this.state 
-    books[index].bookShelf = event.target.value
-    this.setState({ books });
+  changeShelf = (event, bookID) => {
+    let { books2 } = this.state
+    find(books2, ['id', bookID]).shelf = event.target.value
+    this.setState({ books2 });
   }
 
   handleSearch = event => {
@@ -66,7 +66,7 @@ class BooksApp extends React.Component {
     console.log(this.state)
     console.log(this.state.books2[2])
     if (this.state.books2.length===0) {return null}
-    console.log(this.state.books2[2].imageLinks)
+    console.log(this.state.books2[2].id)
     return (
       <div className="app">
         {this.state.showSearchPage ? (
@@ -103,19 +103,19 @@ class BooksApp extends React.Component {
             <div className="list-books-content">
               <div>
                 <Bookshelf
-                  books={filter(this.state.books, { bookShelf: 'currentlyReading' })}
+                  books={filter(this.state.books2, { shelf: 'currentlyReading' })}
                   changeShelf={this.changeShelf}
                   bookshelfTitle='Currently Reading'
                 ></Bookshelf>
 
                 <Bookshelf
-                  books={filter(this.state.books, { bookShelf: 'wantToRead'})}
+                  books={filter(this.state.books2, { shelf: 'wantToRead'})}
                   changeShelf={this.changeShelf}
                   bookshelfTitle={'Want to Read'}
                 ></Bookshelf>
 
                 <Bookshelf
-                  books={filter(this.state.books, { bookShelf: 'read'})}
+                  books={filter(this.state.books2, { shelf: 'read'})}
                   changeShelf={this.changeShelf}
                   bookshelfTitle={'Read'}
                 ></Bookshelf>

@@ -10,13 +10,13 @@ function Bookshelf(props) {
       <div className="bookshelf-books">
         <ol className="books-grid">
           {props.books.map((entry, index) => (
-            <li key={index}>
+            <li key={entry.id}>
               <Book
-                bookTitle={entry.bookTitle}
-                bookAuthor={entry.bookAuthor}
-                bookCoverURL={entry.bookCoverURL}
-                bookShelf={entry.bookShelf}
-                changeShelf={(event) => props.changeShelf(event, index)}
+                bookTitle={entry.title}
+                bookAuthor={entry.authors}
+                bookCoverURL={entry.imageLinks.thumbnail}
+                bookShelf={entry.shelf}
+                changeShelf={(event) => props.changeShelf(event, entry.id)}
               ></Book>  
             </li>
           ))}

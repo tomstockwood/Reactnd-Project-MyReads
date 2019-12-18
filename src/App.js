@@ -1,7 +1,6 @@
 import React from 'react'
 import * as BooksAPI from './BooksAPI'
 import './App.css'
-import Book from './Book.js'
 import Bookshelf from './Bookshelf.js'
 import SearchBooks from './SearchBooks.js'
 import { filter, find } from 'lodash'

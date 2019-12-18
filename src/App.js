@@ -150,13 +150,13 @@ class BooksApp extends React.Component {
                         </div>
                       </li>
                       <li>
-                        <Book
+                        {/* <Book
                           bookTitle={this.state.books2[2].title}
                           bookAuthor={this.state.books2[2].authors}
                           bookCoverURL={this.state.books2[2].imageLinks.thumbnail}
                           bookShelf={this.state.books2[2].shelf}
                           changeShelf={this.changeShelf}
-                        ></Book>
+                        ></Book> */}
                       </li>
                       <li>
                         <div className="book">

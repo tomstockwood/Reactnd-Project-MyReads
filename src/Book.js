@@ -20,7 +20,15 @@ function Book(props) {
         </div>
       </div>
       <div className="book-title">{props.title}</div>
-      <div className="book-authors">{props.bookAuthor}</div>
+      {/* <div className="book-authors">{props.authors} {props.authors.type}</div> */}
+      {/* <div className="book-authors">{props.bookAuthor}</div> */}
+      <div className="book-authors">
+        {props.authors.length<=1 
+        ? props.authors 
+        : (props.authors.slice(0,-1).map((entry) => (entry + ", "))).concat(props.authors[props.authors.length - 1]) 
+        }
+      </div>
+
     </div>
   )
 }

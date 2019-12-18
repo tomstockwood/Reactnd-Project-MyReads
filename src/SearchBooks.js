@@ -37,11 +37,11 @@ function SearchBooks(props) {
             )
              &&
             // true &&
-              <li key={index}>
+              <li key={entry.id}>
                 {console.log(props.books)}
                 {console.log(props.searchText)}
                 <Book
-                  bookTitle={entry.title}
+                  title={entry.title}
                   // bookAuthor={entry.bookAuthor}
                   bookAuthor={
                     entry.authors.length<=1 
@@ -49,8 +49,8 @@ function SearchBooks(props) {
                     : (entry.authors.slice(0,-1).map((entry) => (entry + ", "))).concat(entry.authors[entry.authors.length - 1]) 
                   }
                   bookCoverURL={entry.imageLinks.thumbnail}
-                  bookShelf={entry.bookShelf}
-                  changeShelf={props.changeShelf}
+                  shelf={entry.shelf}
+                  changeShelf={(event) => props.changeShelf(event, entry.id)}
                 ></Book>  
               </li>
           ))}

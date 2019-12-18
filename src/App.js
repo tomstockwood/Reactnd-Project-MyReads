@@ -100,6 +100,7 @@ class BooksApp extends React.Component {
             books={this.state.books2}
             showSearchPage={this.state.showSearchPage}
             closeSearch={this.closeSearch}
+            changeShelf={this.changeShelf}
           ></SearchBooks>
         ) : (
           <div className="list-books">

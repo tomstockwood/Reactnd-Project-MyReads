@@ -22,13 +22,13 @@ class BooksApp extends React.Component {
       {
       bookTitle : "To Kill a Mockingbird", 
       bookAuthor : "Harper Lee", 
-      bookCoverURL : 'url("http://books.google.com/books/content?id=PGR2AwAAQBAJ&printsec=frontcover&img=1&zoom=1&imgtk=AFLRE73-GnPVEyb7MOCxDzOYF1PTQRuf6nCss9LMNOSWBpxBrz8Pm2_mFtWMMg_Y1dx92HT7cUoQBeSWjs3oEztBVhUeDFQX6-tWlWz1-feexS0mlJPjotcwFqAg6hBYDXuK_bkyHD-y&source=gbs_api")',
+      bookCoverURL : "http://books.google.com/books/content?id=PGR2AwAAQBAJ&printsec=frontcover&img=1&zoom=1&imgtk=AFLRE73-GnPVEyb7MOCxDzOYF1PTQRuf6nCss9LMNOSWBpxBrz8Pm2_mFtWMMg_Y1dx92HT7cUoQBeSWjs3oEztBVhUeDFQX6-tWlWz1-feexS0mlJPjotcwFqAg6hBYDXuK_bkyHD-y&source=gbs_api",
       bookShelf : "currentlyReading" 
       },
       {
         bookTitle : "Ender's Game", 
         bookAuthor : "Orson Scott Card", 
-        bookCoverURL : 'url("http://books.google.com/books/content?id=yDtCuFHXbAYC&printsec=frontcover&img=1&zoom=1&imgtk=AFLRE72RRiTR6U5OUg3IY_LpHTL2NztVWAuZYNFE8dUuC0VlYabeyegLzpAnDPeWxE6RHi0C2ehrR9Gv20LH2dtjpbcUcs8YnH5VCCAH0Y2ICaKOTvrZTCObQbsfp4UbDqQyGISCZfGN&source=gbs_api")',
+        bookCoverURL : "http://books.google.com/books/content?id=yDtCuFHXbAYC&printsec=frontcover&img=1&zoom=1&imgtk=AFLRE72RRiTR6U5OUg3IY_LpHTL2NztVWAuZYNFE8dUuC0VlYabeyegLzpAnDPeWxE6RHi0C2ehrR9Gv20LH2dtjpbcUcs8YnH5VCCAH0Y2ICaKOTvrZTCObQbsfp4UbDqQyGISCZfGN&source=gbs_api",
         bookShelf : "currentlyReading" 
       }
     ],
@@ -63,7 +63,8 @@ class BooksApp extends React.Component {
 
   render() {
     console.log(this.state)
-    //console.log(this.BooksAPI)
+    console.log(this.state.books2[2])
+    if (this.state.books2.length===0) {return null}
     return (
       <div className="app">
         {this.state.showSearchPage ? (
@@ -144,10 +145,11 @@ class BooksApp extends React.Component {
                       </li>
                       <li>
                         <Book
-                          bookTitle={'To Kill a Mockingbird'}
-                          bookAuthor={'Harper Lee'}
-                          bookCoverURL={'url("http://books.google.com/books/content?id=PGR2AwAAQBAJ&printsec=frontcover&img=1&zoom=1&imgtk=AFLRE73-GnPVEyb7MOCxDzOYF1PTQRuf6nCss9LMNOSWBpxBrz8Pm2_mFtWMMg_Y1dx92HT7cUoQBeSWjs3oEztBVhUeDFQX6-tWlWz1-feexS0mlJPjotcwFqAg6hBYDXuK_bkyHD-y&source=gbs_api")'} 
-                          bookShelf={this.state.books[0].bookShelf}
+                          bookTitle={this.state.books2[2].title}
+                          bookAuthor={this.state.books2[2].authors}
+                          // bookCoverURL={`url(${this.state.books2[2].imageLinks.thumbnail})`}
+                          bookCoverURL={this.state.books2[2].imageLinks.thumbnail}
+                          bookShelf={this.state.books2[2].shelf}
                           changeShelf={this.changeShelf}
                         ></Book>
                       </li>

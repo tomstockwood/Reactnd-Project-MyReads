@@ -1,10 +1,18 @@
 import React from 'react';
 
+// TODO: Figure out what to do if there are multiple authors
+
 function Book(props) {
   return(
     <div className="book">
       <div className="book-top">
-        <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: props.bookCoverURL }}></div>
+        <div className="book-cover">
+           {/* style={{ width: 128, height: 193, backgroundImage: props.bookCoverURL }}> */}
+          <img
+            src={props.bookCoverURL}
+            alt=''
+          ></img>
+        </div>
         <div className="book-shelf-changer">
           <select onChange={props.changeShelf}>
             <option value="move" disabled>Move to...</option>

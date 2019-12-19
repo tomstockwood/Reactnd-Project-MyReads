@@ -1,9 +1,9 @@
-import React from 'react'
-import * as BooksAPI from './BooksAPI'
-import './App.css'
-import Bookshelf from './Bookshelf.js'
-import SearchBooks from './SearchBooks.js'
-import { filter, find } from 'lodash'
+import React from 'react';
+import * as BooksAPI from './BooksAPI';
+import './App.css';
+import Bookshelf from './Bookshelf.js';
+import SearchBooks from './SearchBooks.js';
+import { filter, find } from 'lodash';
 
 class BooksApp extends React.Component {
   state = {
@@ -122,13 +122,13 @@ class BooksApp extends React.Component {
                 <Bookshelf
                   books={filter(this.state.books2, { shelf: 'wantToRead'})}
                   changeShelf={this.changeShelf}
-                  bookshelfTitle={'Want to Read'}
+                  bookshelfTitle='Want to Read'
                 ></Bookshelf>
 
                 <Bookshelf
                   books={filter(this.state.books2, { shelf: 'read'})}
                   changeShelf={this.changeShelf}
-                  bookshelfTitle={'Read'}
+                  bookshelfTitle='Read'
                 ></Bookshelf>
                 
                 {/* <div className="bookshelf">

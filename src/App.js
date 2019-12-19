@@ -1,9 +1,12 @@
 import React from 'react';
 import * as BooksAPI from './BooksAPI';
 import './App.css';
+import { filter, find } from 'lodash';
+import { Link, Route } from 'react-router-dom'
 import Bookshelf from './Bookshelf.js';
 import SearchBooks from './SearchBooks.js';
-import { filter, find } from 'lodash';
+
+
 
 class BooksApp extends React.Component {
   state = {
@@ -76,6 +79,18 @@ class BooksApp extends React.Component {
     console.log(this.state.books2[2].id)
     return (
       <div className="app">
+        <Route path="/search" render={() => (
+          <SearchBooks
+            searchText={this.state.searchText}
+            handleSearch={this.handleSearch}
+            books={this.state.books2}
+            showSearchPage={this.state.showSearchPage}
+            closeSearch={this.closeSearch}
+            changeShelf={this.changeShelf}
+        ></SearchBooks>
+        )}/>
+        
+        
         {this.state.showSearchPage ? ( // Changes which page is being displayed based on the value of showSearchPage
           
           // <div className="search-books">
@@ -291,8 +306,15 @@ class BooksApp extends React.Component {
             </div>
 
             {/* Opens the search page. Changes the boolean showSeachPage to true. */}
-            <div className="open-search">
+            {/* <div className="open-search">
               <button onClick={() => this.setState({ showSearchPage: true })}>Add a book</button>
+            </div> */}
+            <div className="open-search">
+              <Link
+                to="/search"
+              >
+                <button></button>
+              </Link>
             </div>
           </div>
         )}

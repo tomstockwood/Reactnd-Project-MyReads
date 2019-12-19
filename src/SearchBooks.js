@@ -1,6 +1,29 @@
 import React from 'react';
 import Book from './Book.js';
 
+
+// @description Displays all books whose author or title contain the 
+// text currently entered in the search bar.
+// 
+// @param {string} searchText. The current text in the search bar.
+// Stored as a string in state. 
+// 
+// @param {function} handleSearch. Updates the value of searchText 
+// when text is entered in the seach bar. 
+// 
+// @param {array} books. An array of books.
+// 
+// @param {bool} showSearchPage. A boolean determining whether to 
+// display the search page. Stored in state.
+// 
+// @param {function} closeSearch. Function that changes 
+// showSearchPage if the close search button is pressed. Returns the
+// user to the main page
+// 
+// @param {function} changeShelf. Changes the shelf of a given book. 
+// 
+// @returns All books whose author or title contain the 
+// text currently entered in the search bar.
 function SearchBooks(props) {
   return(
     <div className="search-books">

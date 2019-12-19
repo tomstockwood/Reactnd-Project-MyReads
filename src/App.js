@@ -32,6 +32,8 @@ class BooksApp extends React.Component {
     books2 : []
   }
 
+
+  // @description Imports the books from the API
   componentDidMount() {
     BooksAPI.getAll()
       .then((books2) => {
@@ -40,39 +42,42 @@ class BooksApp extends React.Component {
         }))
       })
   }
-
-
-  // TODO: Make changeShelf work so that it can be used for 
-  // any book. I think the way to do this is to turn Book 
-  // into a true component... or maybe it's to give it a generic
-  // thing in state to access, which is then made into the correct
-  // reference for the book that we want to get. 
-
+  
+  // @description Changes the shelf of a book 
+  // @param {event} Event that fires changeShelf, currently a new option being 
+  // chosen in book-shelf-changer within Book.js
+  // @param {string} bookID - The ID of the book
+  // @returns {array} books2 - The updated collection of books, with changed shelf.
   changeShelf = (event, bookID) => {
     let { books2 } = this.state
-    find(books2, ['id', bookID]).shelf = event.target.value
+    find(books2, ['id', bookID]).shelf = event.target.value // Finds the specific book by ID
     this.setState({ books2 });
   }
 
+  // @description Handles text being entered in the search bar
+  // @param {event} Text being entered in the search bar
+  // @returns {string} Updated value of searchText within state
   handleSearch = event => {
     this.setState({ searchText: event.target.value });
   };
   
+  // @description Closes the search page and returns to the main page
+  // @param {event} The close search button being pressed
+  // @returns {bool} showSearchPage in state is updated to false
   closeSearch = event => {
     this.setState({ showSearchPage: false });
   };
 
   
-
   render() {
     console.log(this.state)
     console.log(this.state.books2[2])
     if (this.state.books2.length===0) {return null}
     console.log(this.state.books2[2].id)
-    // console.log((this.state.books2[6].authors.slice(0,-1).map((entry) => (entry + ", "))).concat(["xx"]))
     return (
       <div className="app">
-        {this.state.showSearchPage ? (
+        {this.state.showSearchPage ? ( // Changes which page is being displayed based on the value of showSearchPage
+          
           // <div className="search-books">
           //   <div className="search-books-bar">
           //     <button className="close-search" onClick={() => this.setState({ showSearchPage: false })}>Close</button>
@@ -126,7 +131,7 @@ class BooksApp extends React.Component {
                   bookshelfTitle={'Read'}
                 ></Bookshelf>
                 
-                <div className="bookshelf">
+                {/* <div className="bookshelf">
                   <h2 className="bookshelf-title">Currently Reading</h2>
                   <div className="bookshelf-books">
                     <ol className="books-grid">
@@ -149,13 +154,13 @@ class BooksApp extends React.Component {
                         </div>
                       </li>
                       <li>
-                        {/* <Book
+                        <Book
                           bookTitle={this.state.books2[2].title}
                           bookAuthor={this.state.books2[2].authors}
                           bookCoverURL={this.state.books2[2].imageLinks.thumbnail}
                           bookShelf={this.state.books2[2].shelf}
                           changeShelf={this.changeShelf}
-                        ></Book> */}
+                        ></Book>
                       </li>
                       <li>
                         <div className="book">
@@ -281,9 +286,11 @@ class BooksApp extends React.Component {
                       </li>
                     </ol>
                   </div>
-                </div>
+                </div> */}
               </div>
             </div>
+
+            {/* Opens the search page. Changes the boolean showSeachPage to true. */}
             <div className="open-search">
               <button onClick={() => this.setState({ showSearchPage: true })}>Add a book</button>
             </div>

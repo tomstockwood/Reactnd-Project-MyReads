@@ -1,14 +1,24 @@
 import React from 'react';
 
+// @description Displays a given book.
+// @param {string} title. The title of the book
+// @param {string} bookCoverURL. The url for the cover image of the book.
+// @param {array} authors. Array containing all the authors of a book.
+// @param {string} shelf. The current shelf of the book.
+// @param {function} changeShelf. Changes the shelf of the book.
+// @returns The given book
 function Book(props) {
   return(
     <div className="book">
       <div className="book-top">
+        {/* img tag which displays the bookcover */}
         <img className="book-cover"
           src={props.bookCoverURL}
           width={128}
           alt=''
         ></img>
+
+        {/* select tag which allows the shelf of the book to be changed */}
         <div className="book-shelf-changer">
           <select onChange={props.changeShelf} defaultValue={props.shelf}>
             <option value="move" disabled>Move to...</option>
@@ -19,16 +29,12 @@ function Book(props) {
           </select>
         </div>
       </div>
+      {/* Displays the book title */}
       <div className="book-title">{props.title}</div>
-      {/* <div className="book-authors">{props.authors} {props.authors.type}</div> */}
-      {/* <div className="book-authors">{props.bookAuthor}</div> */}
-      <div className="book-authors">
-        {props.authors.length<=1 
-        ? props.authors 
-        : (props.authors.slice(0,-1).map((entry) => (entry + ", "))).concat(props.authors[props.authors.length - 1]) 
-        }
-      </div>
-
+      
+      {/* Displays the book author(s). If there are multiple authors, they are 
+      displayed in sequence seperated by a comma. */}
+      <div className="book-authors">{props.authors.join(", ")}</div>
     </div>
   )
 }

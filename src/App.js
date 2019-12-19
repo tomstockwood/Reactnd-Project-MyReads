@@ -25,7 +25,8 @@ class BooksApp extends React.Component {
         bookShelf : "currentlyReading" 
       }
     ],
-    books2 : []
+    books2 : [],
+    searchBooks : []
   }
 
 
@@ -47,7 +48,8 @@ class BooksApp extends React.Component {
   changeShelf = (event, bookID) => {
     let { books2 } = this.state
     find(books2, ['id', bookID]).shelf = event.target.value // Finds the specific book by ID and sets its shelf property
-    BooksAPI.update((find(books2, ['id', bookID])), event.target.value)
+    BooksAPI.update((find(books2, ['id', bookID])), event.target.value) // Updates the API
+    // console.log(BooksAPI.update((find(books2, ['id', bookID])), event.target.value))
     this.setState({ books2 });
   }
 
@@ -55,15 +57,20 @@ class BooksApp extends React.Component {
   // @param {event} Text being entered in the search bar
   // @returns {string} Updated value of searchText within state
   handleSearch = event => {
-    
+    BooksAPI.search(event.target.value)
+    .then((searchBooks) => {
+      this.setState(() => ({
+        searchBooks
+      }))
+    })
     this.setState({ searchText: event.target.value });
   };
   
   render() {
     console.log(this.state)
-    console.log(this.state.books2[2])
+    // console.log(this.state.books2[2])
     if (this.state.books2.length===0) {return null}
-    console.log(this.state.books2[2].id)
+    // console.log(this.state.books2[2].id)
     return (
       <div className="app">
         <Route path="/search" render={() => (

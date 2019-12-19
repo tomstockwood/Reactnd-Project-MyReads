@@ -53,7 +53,8 @@ class BooksApp extends React.Component {
   // @returns {array} books2 - The updated collection of books, with changed shelf.
   changeShelf = (event, bookID) => {
     let { books2 } = this.state
-    find(books2, ['id', bookID]).shelf = event.target.value // Finds the specific book by ID
+    find(books2, ['id', bookID]).shelf = event.target.value // Finds the specific book by ID and sets its shelf property
+    BooksAPI.update((find(books2, ['id', bookID])), event.target.value)
     this.setState({ books2 });
   }
 

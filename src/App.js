@@ -16,7 +16,6 @@ class BooksApp extends React.Component {
      * users can use the browser's back and forward buttons to navigate between
      * pages, as well as provide a good URL they can bookmark and share.
      */
-    showSearchPage: false,
     searchText : "",
     books : [
       {
@@ -62,16 +61,9 @@ class BooksApp extends React.Component {
   // @param {event} Text being entered in the search bar
   // @returns {string} Updated value of searchText within state
   handleSearch = event => {
+    
     this.setState({ searchText: event.target.value });
   };
-  
-  // @description Closes the search page and returns to the main page
-  // @param {event} The close search button being pressed
-  // @returns {bool} showSearchPage in state is updated to false
-  closeSearch = event => {
-    this.setState({ showSearchPage: false });
-  };
-
   
   render() {
     console.log(this.state)
@@ -85,8 +77,6 @@ class BooksApp extends React.Component {
             searchText={this.state.searchText}
             handleSearch={this.handleSearch}
             books={this.state.books2}
-            showSearchPage={this.state.showSearchPage}
-            // closeSearch={this.closeSearch}
             changeShelf={this.changeShelf}
         ></SearchBooks>
         )}/>

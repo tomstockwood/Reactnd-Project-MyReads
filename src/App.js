@@ -1,7 +1,7 @@
 import React from 'react';
 import * as BooksAPI from './BooksAPI';
 import './App.css';
-import { filter, find } from 'lodash';
+import { filter, find, includes } from 'lodash';
 import { Link, Route } from 'react-router-dom'
 import Bookshelf from './Bookshelf.js';
 import SearchBooks from './SearchBooks.js';
@@ -45,8 +45,13 @@ class BooksApp extends React.Component {
   // chosen in book-shelf-changer within Book.js
   // @param {string} bookID - The ID of the book
   // @returns {array} books2 - The updated collection of books, with changed shelf.
-  changeShelf = (event, bookID) => {
+  changeShelf = (event, bookID, book) => {
     let { books2 } = this.state
+    if (find(books2, ['id', bookID])===undefined) {
+      books2.push(book)
+    }
+    // (find(books2, ['id', bookID])===undefined) &&
+    //   books2.push(book)
     find(books2, ['id', bookID]).shelf = event.target.value // Finds the specific book by ID and sets its shelf property
     BooksAPI.update((find(books2, ['id', bookID])), event.target.value) // Updates the API
     // console.log(BooksAPI.update((find(books2, ['id', bookID])), event.target.value))
@@ -71,13 +76,14 @@ class BooksApp extends React.Component {
     // console.log(this.state.books2[2])
     if (this.state.books2.length===0) {return null}
     // console.log(this.state.books2[2].id)
+    console.log(includes(this.state.books2[0],'74XNzF_al3MC'))
     return (
       <div className="app">
         <Route path="/search" render={() => (
           <SearchBooks
             searchText={this.state.searchText}
             handleSearch={this.handleSearch}
-            books={this.state.books2}
+            books={this.state.searchBooks}
             changeShelf={this.changeShelf}
         ></SearchBooks>
         )}/>

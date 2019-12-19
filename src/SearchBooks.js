@@ -58,13 +58,13 @@ function SearchBooks(props) {
           whose author/title contains the searchText. It also 
           only outputs if there's an entry in the searchText */}
           {props.books.map((entry,index) => (
-            (
-              (entry.title.includes(props.searchText)
-              || entry.authors.toString().includes(props.searchText))
-              && (props.searchText !== "")
-            )
-             &&
-            // true &&
+            // (
+            //   (entry.title.includes(props.searchText)
+            //   || entry.authors.toString().includes(props.searchText))
+            //   && (props.searchText !== "")
+            // )
+            //  &&
+            true &&
               <li key={entry.id}>
                 {console.log(props.books)}
                 {console.log(props.searchText)}
@@ -73,7 +73,7 @@ function SearchBooks(props) {
                   bookCoverURL={entry.imageLinks.thumbnail}
                   authors={entry.authors}
                   shelf={entry.shelf}
-                  changeShelf={(event) => props.changeShelf(event, entry.id)}
+                  changeShelf={(event) => props.changeShelf(event, entry.id, entry)}
                 ></Book>  
               </li>
           ))}

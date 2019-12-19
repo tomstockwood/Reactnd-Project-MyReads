@@ -1,6 +1,6 @@
 import React from 'react';
 import Book from './Book.js';
-
+import { Link } from 'react-router-dom';
 
 // @description Displays all books whose author or title contain the 
 // text currently entered in the search bar.
@@ -28,7 +28,12 @@ function SearchBooks(props) {
   return(
     <div className="search-books">
       <div className="search-books-bar">
-        <button className="close-search" onClick={props.closeSearch}>Close</button>
+        {/* Takes the user back to the main page. */}
+        <div>
+          <Link to="/">
+            <button className='close-search'></button>
+          </Link>
+        </div>
         <div className="search-books-input-wrapper">
           {/*
             NOTES: The search from BooksAPI is limited to a particular set of search terms.

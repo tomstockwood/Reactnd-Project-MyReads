@@ -85,7 +85,7 @@ class BooksApp extends React.Component {
             handleSearch={this.handleSearch}
             books={this.state.books2}
             showSearchPage={this.state.showSearchPage}
-            closeSearch={this.closeSearch}
+            // closeSearch={this.closeSearch}
             changeShelf={this.changeShelf}
         ></SearchBooks>
         )}/>
@@ -117,10 +117,7 @@ class BooksApp extends React.Component {
             </div>
           </div>
 
-          {/* Opens the search page. Changes the boolean showSeachPage to true. */}
-          {/* <div className="open-search">
-            <button onClick={() => this.setState({ showSearchPage: true })}>Add a book</button>
-          </div> */}
+          {/* Opens the search page.*/}
           <div className="open-search">
             <Link
               to="/search"
@@ -130,7 +127,7 @@ class BooksApp extends React.Component {
           </div>
         </div>
         )}/> 
-               
+
       </div>
     )
   }

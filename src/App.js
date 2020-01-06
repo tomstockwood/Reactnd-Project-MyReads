@@ -1,7 +1,7 @@
 import React from 'react';
 import * as BooksAPI from './BooksAPI';
 import './App.css';
-import { filter, find, includes } from 'lodash';
+import { filter, find, includes, debounce } from 'lodash';
 import { Link, Route } from 'react-router-dom'
 import Bookshelf from './Bookshelf.js';
 import SearchBooks from './SearchBooks.js';
@@ -61,16 +61,27 @@ class BooksApp extends React.Component {
   // @description Handles text being entered in the search bar
   // @param {event} Text being entered in the search bar
   // @returns {string} Updated value of searchText within state
-  handleSearch = event => {
-    BooksAPI.search(event.target.value)
+  handleSearch = debounce((value) => {
+    this.setState({ searchText: value });
+    if (this.state.searchText !== "") {
+      BooksAPI.search(this.state.searchText)
+      .then((searchBooks) => {
+        this.setState(() => ({
+          searchBooks
+        }))
+      })
+    }
+  }, 200);
+  
+  setSearchBooks = (query) => {
+    BooksAPI.search(query)
     .then((searchBooks) => {
       this.setState(() => ({
         searchBooks
       }))
     })
-    this.setState({ searchText: event.target.value });
-  };
-  
+  }
+
   render() {
     console.log(this.state)
     // console.log(this.state.books2[2])
@@ -82,7 +93,12 @@ class BooksApp extends React.Component {
         <Route path="/search" render={() => (
           <SearchBooks
             searchText={this.state.searchText}
-            handleSearch={this.handleSearch}
+            // handleSearch={debounce(this.handleSearch, 2000)}
+            handleSearch={evt => {
+              evt.persist()
+              this.handleSearch(evt.target.value)
+            }}
+            setSearchBooks={this.setSearchBooks}
             books={this.state.searchBooks}
             changeShelf={this.changeShelf}
         ></SearchBooks>

@@ -1,5 +1,6 @@
 import React from 'react';
 import Book from './Book.js';
+import { debounce } from 'lodash';
 import { Link } from 'react-router-dom';
 
 // @description Displays all books whose author or title contain the 
@@ -49,7 +50,6 @@ function SearchBooks(props) {
             value={props.searchText}
             onChange={props.handleSearch}
           />
-          
         </div>
       </div>
       <div className="search-books-results">
@@ -57,26 +57,28 @@ function SearchBooks(props) {
           {/* Takes the books prop and only outputs those books
           whose author/title contains the searchText. It also 
           only outputs if there's an entry in the searchText */}
-          {props.books.map((entry,index) => (
-            // (
-            //   (entry.title.includes(props.searchText)
-            //   || entry.authors.toString().includes(props.searchText))
-            //   && (props.searchText !== "")
-            // )
-            //  &&
-            true &&
-              <li key={entry.id}>
-                {console.log(props.books)}
-                {console.log(props.searchText)}
-                <Book
-                  title={entry.title}
-                  bookCoverURL={entry.imageLinks.thumbnail}
-                  authors={entry.authors}
-                  shelf={entry.shelf}
-                  changeShelf={(event) => props.changeShelf(event, entry.id, entry)}
-                ></Book>  
-              </li>
-          ))}
+          {/* {props.setSearchBooks("h")} */}
+          {/* {(props.books.isArray() === true) &&   */}
+            {props.books.map((entry,index) => (
+              // (
+              //   (entry.title.includes(props.searchText)
+              //   || entry.authors.toString().includes(props.searchText))
+              //   && (props.searchText !== "")
+              // )
+              //  &&
+              (props.searchText !== "") &&
+                <li key={entry.id}>
+                  {console.log(props.books)}
+                  {console.log(props.searchText)}
+                  <Book
+                    title={entry.title}
+                    bookCoverURL={entry.imageLinks.thumbnail}
+                    authors={entry.authors}
+                    shelf={entry.shelf}
+                    changeShelf={(event) => props.changeShelf(event, entry.id, entry)}
+                  ></Book>  
+                </li>
+            ))}
         </ol>
       </div>
     </div>

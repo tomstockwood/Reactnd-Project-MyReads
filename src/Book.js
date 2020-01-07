@@ -8,12 +8,20 @@ import { isArray } from 'lodash'
 // @param {function} changeShelf. Changes the shelf of the book.
 // @returns The given book
 function Book(props) {
+  
+  let bookCoverURL = props.bookCoverURL
+
+  bookCoverURL===undefined 
+  ? bookCoverURL = null
+  : bookCoverURL = bookCoverURL.thumbnail
+
+  
   return(
     <div className="book">
       <div className="book-top">
         {/* img tag which displays the bookcover */}
         <img className="book-cover"
-          src={props.bookCoverURL}
+          src={bookCoverURL}
           width={128}
           alt=''
         ></img>

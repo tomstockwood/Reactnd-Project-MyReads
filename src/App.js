@@ -56,6 +56,7 @@ class BooksApp extends React.Component {
   }
 
   render() {
+    console.log(this.state)
     if (this.state.books2.length === 0) {
       return null
     }

@@ -51,9 +51,9 @@ function SearchBooks(props) {
         <li key={entry.id}>
           <Book
             title={entry.title}
-            bookCoverURL={entry.imageLinks.thumbnail}
+            //bookCoverURL={entry.imageLinks.thumbnail}
             authors={entry.authors}
-            shelf={entry.shelf}
+            shelf={"none"}
             changeShelf={(event) => props.changeShelf(event, entry.id, entry)}
           />
         </li>

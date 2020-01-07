@@ -1,7 +1,6 @@
 import React from 'react';
 import Book from './Book.js';
-import { debounce } from 'lodash';
-import { Link } from 'react-router-dom';
+// import { debounce } from 'lodash';
 
 // @description Displays all books whose author or title contain the 
 // text currently entered in the search bar.
@@ -26,63 +25,47 @@ import { Link } from 'react-router-dom';
 // @returns All books whose author or title contain the 
 // text currently entered in the search bar.
 function SearchBooks(props) {
-  return(
-    <div className="search-books">
-      <div className="search-books-bar">
-        {/* Takes the user back to the main page. */}
-        <div>
-          <Link to="/">
-            <button className='close-search'></button>
-          </Link>
-        </div>
-        <div className="search-books-input-wrapper">
-          {/*
-            NOTES: The search from BooksAPI is limited to a particular set of search terms.
-            You can find these search terms here:
-            https://github.com/udacity/reactnd-project-myreads-starter/blob/master/SEARCH_TERMS.md
-            
-            However, remember that the BooksAPI.search method DOES search by title or author. So, don't worry if
-            you don't find a specific author or title. Every search is limited by search terms.
-          */}
-          <input 
-            type="text" 
-            placeholder="Search by title or author"
-            value={props.searchText}
-            onChange={props.handleSearch}
+
+  if (props.searchText === '') return null
+  if (props.isLoading) {
+    return (
+      <p>Loading...</p>
+    )
+  }
+
+  if (!props.books || !props.books.length) {
+    return (
+      <div style={{ textAlign: 'center' }}>
+        <img
+          alt='oops!'
+          style={{ width: '50%' }}
+          src="https://cdn.dribbble.com/users/283708/screenshots/7084440/media/6cd8b29540bcfb6a7693c27f58db7b56.png"
+        />
+      </div>
+    )
+  }
+
+  return (
+    <ol className="books-grid">
+      {props.books.map(entry => (
+        <li key={entry.id}>
+          <Book
+            title={entry.title}
+            bookCoverURL={entry.imageLinks.thumbnail}
+            authors={entry.authors}
+            shelf={entry.shelf}
+            changeShelf={(event) => props.changeShelf(event, entry.id, entry)}
           />
-        </div>
-      </div>
-      <div className="search-books-results">
-        <ol className="books-grid">
-          {/* Takes the books prop and only outputs those books
-          whose author/title contains the searchText. It also 
-          only outputs if there's an entry in the searchText */}
-          {/* {props.setSearchBooks("h")} */}
-          {/* {(props.books.isArray() === true) &&   */}
-            {props.books.map((entry,index) => (
-              // (
-              //   (entry.title.includes(props.searchText)
-              //   || entry.authors.toString().includes(props.searchText))
-              //   && (props.searchText !== "")
-              // )
-              //  &&
-              (props.searchText !== "") &&
-                <li key={entry.id}>
-                  {console.log(props.books)}
-                  {console.log(props.searchText)}
-                  <Book
-                    title={entry.title}
-                    bookCoverURL={entry.imageLinks.thumbnail}
-                    authors={entry.authors}
-                    shelf={entry.shelf}
-                    changeShelf={(event) => props.changeShelf(event, entry.id, entry)}
-                  ></Book>  
-                </li>
-            ))}
-        </ol>
-      </div>
-    </div>
+        </li>
+      ))}
+    </ol>
   )
 }
 
 export default SearchBooks
+
+// {/* Takes the books prop and only outputs those books
+// whose author/title contains the searchText. It also 
+// only outputs if there's an entry in the searchText */}
+// {/* {props.setSearchBooks("h")} */}
+// {/* {(props.books.isArray() === true) &&   */}

@@ -1,16 +1,14 @@
 import React from 'react';
 import * as BooksAPI from './BooksAPI';
 import './App.css';
-import { filter, find, includes, debounce } from 'lodash';
+import { filter, find } from 'lodash';
 import { Link, Route } from 'react-router-dom'
 import Bookshelf from './Bookshelf.js';
-import SearchBooks from './SearchBooks.js';
-
+import Search from './Search.js';
 
 
 class BooksApp extends React.Component {
   state = {
-    searchText : "",
     books : [
       {
       bookTitle : "To Kill a Mockingbird", 
@@ -26,7 +24,6 @@ class BooksApp extends React.Component {
       }
     ],
     books2 : [],
-    searchBooks : []
   }
 
 
@@ -34,7 +31,7 @@ class BooksApp extends React.Component {
   componentDidMount() {
     BooksAPI.getAll()
       .then((books2) => {
-        this.setState(() => ({
+        this.setState(()=>({
           books2
         }))
       })
@@ -58,52 +55,16 @@ class BooksApp extends React.Component {
     this.setState({ books2 });
   }
 
-  // @description Handles text being entered in the search bar
-  // @param {event} Text being entered in the search bar
-  // @returns {string} Updated value of searchText within state
-  handleSearch = debounce((value) => {
-    this.setState({ searchText: value });
-    if (this.state.searchText !== "") {
-      BooksAPI.search(this.state.searchText)
-      .then((searchBooks) => {
-        this.setState(() => ({
-          searchBooks
-        }))
-      })
-    }
-  }, 200);
-  
-  setSearchBooks = (query) => {
-    BooksAPI.search(query)
-    .then((searchBooks) => {
-      this.setState(() => ({
-        searchBooks
-      }))
-    })
-  }
-
   render() {
-    console.log(this.state)
-    // console.log(this.state.books2[2])
-    if (this.state.books2.length===0) {return null}
-    // console.log(this.state.books2[2].id)
-    console.log(includes(this.state.books2[0],'74XNzF_al3MC'))
+    if (this.state.books2.length === 0) {
+      return null
+    }
+
     return (
       <div className="app">
         <Route path="/search" render={() => (
-          <SearchBooks
-            searchText={this.state.searchText}
-            // handleSearch={debounce(this.handleSearch, 2000)}
-            handleSearch={evt => {
-              evt.persist()
-              this.handleSearch(evt.target.value)
-            }}
-            setSearchBooks={this.setSearchBooks}
-            books={this.state.searchBooks}
-            changeShelf={this.changeShelf}
-        ></SearchBooks>
-        )}/>
-        
+          <Search changeShelf={this.changeShelf} />
+        )} />
         <Route exact path="/" render={() => (
           <div className="list-books">
           <div className="list-books-title">

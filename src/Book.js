@@ -1,5 +1,5 @@
 import React from 'react';
-
+import { isArray } from 'lodash'
 // @description Displays a given book.
 // @param {string} title. The title of the book
 // @param {string} bookCoverURL. The url for the cover image of the book.
@@ -34,7 +34,7 @@ function Book(props) {
       
       {/* Displays the book author(s). If there are multiple authors, they are 
       displayed in sequence seperated by a comma. */}
-      <div className="book-authors">{props.authors.join(", ")}</div>
+      <div className="book-authors">{isArray(props.authors) && props.authors.join(", ")}</div>
     </div>
   )
 }

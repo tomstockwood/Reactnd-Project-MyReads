@@ -56,7 +56,7 @@ class BooksApp extends React.Component {
   }
 
   render() {
-    //console.log(this.state)
+    console.log(this.state)
     if (this.state.books2.length === 0) {
       return null
     }
@@ -64,7 +64,10 @@ class BooksApp extends React.Component {
     return (
       <div className="app">
         <Route path="/search" render={() => (
-          <Search changeShelf={this.changeShelf} />
+          <Search 
+            changeShelf={this.changeShelf}
+            library={this.state.books2}
+          />
         )} />
         <Route exact path="/" render={() => (
           <div className="list-books">

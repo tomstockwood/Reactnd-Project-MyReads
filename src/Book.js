@@ -1,5 +1,5 @@
 import React from 'react';
-import { isArray } from 'lodash'
+import { isArray, find } from 'lodash'
 // @description Displays a given book.
 // @param {string} title. The title of the book
 // @param {string} bookCoverURL. The url for the cover image of the book.
@@ -8,18 +8,24 @@ import { isArray } from 'lodash'
 // @param {function} changeShelf. Changes the shelf of the book.
 // @returns The given book
 function Book(props) {
-  
+
+  let shelf = props.shelf
+
   if (props.bookCoverURL===undefined) {
     return null
   }
-  
-  // let bookCoverURL = props.bookCoverURL
 
-  // bookCoverURL===undefined 
-  // ? bookCoverURL = null
-  // : bookCoverURL = bookCoverURL.thumbnail
+  if (find(props.library, ['id', props.id])!==undefined) {
+    console.log(find(props.library, ['id', props.id]))
+    console.log(find(props.library, ['id', props.id]).shelf)
+    shelf = find(props.library, ['id', props.id]).shelf
+  }
 
-  
+  // if (props.id==='5CtYoSSxomcC') {
+  //   console.log(props.id)
+  //   console.log(props.library)
+  // }
+
   return(
     <div className="book">
       <div className="book-top">
@@ -32,7 +38,7 @@ function Book(props) {
 
         {/* select tag which allows the shelf of the book to be changed */}
         <div className="book-shelf-changer">
-          <select onChange={props.changeShelf} defaultValue={props.shelf}>
+          <select onChange={props.changeShelf} defaultValue={shelf}>
             <option value="move" disabled>Move to...</option>
             <option value="currentlyReading">Currently Reading</option>
             <option value="wantToRead">Want to Read</option>

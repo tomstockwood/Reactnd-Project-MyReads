@@ -48,6 +48,7 @@ class Search extends React.Component {
   }
 
   render() {
+    console.log(this.state)
     return (
       <div className="search-books">
         <SearchBar
@@ -60,6 +61,7 @@ class Search extends React.Component {
             searchText={this.state.searchText}
             setSearchBooks={this.setSearchBooks}
             books={this.state.searchBooks}
+            library={this.props.library}
             changeShelf={this.props.changeShelf}
           />
         </div>

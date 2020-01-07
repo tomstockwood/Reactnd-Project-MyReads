@@ -9,11 +9,15 @@ import { isArray } from 'lodash'
 // @returns The given book
 function Book(props) {
   
-  let bookCoverURL = props.bookCoverURL
+  if (props.bookCoverURL===undefined) {
+    return null
+  }
+  
+  // let bookCoverURL = props.bookCoverURL
 
-  bookCoverURL===undefined 
-  ? bookCoverURL = null
-  : bookCoverURL = bookCoverURL.thumbnail
+  // bookCoverURL===undefined 
+  // ? bookCoverURL = null
+  // : bookCoverURL = bookCoverURL.thumbnail
 
   
   return(
@@ -21,7 +25,7 @@ function Book(props) {
       <div className="book-top">
         {/* img tag which displays the bookcover */}
         <img className="book-cover"
-          src={bookCoverURL}
+          src={props.bookCoverURL.thumbnail}
           width={128}
           alt=''
         ></img>

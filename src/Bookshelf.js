@@ -2,13 +2,16 @@ import React from 'react';
 import PropTypes from 'prop-types'
 import Book from './Book.js'
 
+/**
+ * @description Displays all books with a given shelf property
+ * @param {array} books. An array of books. Each book is its own object.
+ * @param {function} changeShelf. A function to change a book's shelf.
+ * @param {string} bookshelfTitle. The name of the shelf.
+ * @returns {list} A list of Book objects that have the same shelf prop 
+ * as the shelf.
+ * 
+ */
 
-// @description Displays all books with a given shelf property
-// @param {array} books. An array of books. Each book is its own object.
-// @param {function} changeShelf. A function to change a book's shelf.
-// @param {string} bookshelfTitle. The name of the shelf.
-// @returns {list} A list of Book objects that have the same shelf prop 
-// as the shelf.
 function Bookshelf(props) {
   return(
     <div className="bookshelf">

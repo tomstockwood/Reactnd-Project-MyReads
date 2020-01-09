@@ -1,29 +1,26 @@
 import React from 'react';
 import Book from './Book.js';
-// import { debounce } from 'lodash';
+/**
+ * @description Displays all books whose author or title contain the 
+ * text currently entered in the search bar.
+ * 
+ * @param {boolean} isLoading. Indicates whether the search results
+ * are loaded and ready to be displayed. 
+ * 
+ * @param {string} searchText. The current text in the search bar.
+ *  Stored as a string in state.
+ *
+ * @param {array} books. An array of books.
+ * 
+ * @param {array} library. An array of all the books currently stored 
+ * in the user's collection.
+ * 
+ * @param {function} changeShelf. Changes the shelf of a given book. 
+ * 
+ * @returns All books whose subject matter relates to the search term in 
+ * the search bar.
+ */
 
-// @description Displays all books whose author or title contain the 
-// text currently entered in the search bar.
-// 
-// @param {string} searchText. The current text in the search bar.
-// Stored as a string in state. 
-// 
-// @param {function} handleSearch. Updates the value of searchText 
-// when text is entered in the seach bar. 
-// 
-// @param {array} books. An array of books.
-// 
-// @param {bool} showSearchPage. A boolean determining whether to 
-// display the search page. Stored in state.
-// 
-// @param {function} closeSearch. Function that changes 
-// showSearchPage if the close search button is pressed. Returns the
-// user to the main page
-// 
-// @param {function} changeShelf. Changes the shelf of a given book. 
-// 
-// @returns All books whose author or title contain the 
-// text currently entered in the search bar.
 function SearchBooks(props) {
 
   if (props.searchText === '') return null
@@ -65,9 +62,3 @@ function SearchBooks(props) {
 }
 
 export default SearchBooks
-
-// {/* Takes the books prop and only outputs those books
-// whose author/title contains the searchText. It also 
-// only outputs if there's an entry in the searchText */}
-// {/* {props.setSearchBooks("h")} */}
-// {/* {(props.books.isArray() === true) &&   */}

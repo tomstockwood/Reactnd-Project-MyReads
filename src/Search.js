@@ -4,7 +4,10 @@ import SearchBooks from './SearchBooks.js';
 import SearchBar from './SearchBar.js';
 import * as BooksAPI from './BooksAPI';
 
-
+/**
+ * @description Renders the search page
+ * @constructor
+ */
 class Search extends React.Component {
   state = {
     isLoading: false,
@@ -12,9 +15,10 @@ class Search extends React.Component {
     searchBooks : []
   }
 
-  // @description Handles text being entered in the search bar
-  // @param {event} Text being entered in the search bar
-  // @returns {string} Updated value of searchText within state
+  /**
+   * @description Debounces the search function, 
+   * and deals with different search errors
+   */
   debouncedSearch = debounce(() => {
     if (this.state.searchText === "") {
       this.setState({
@@ -39,10 +43,15 @@ class Search extends React.Component {
     }
   }, 200);
 
-  handleSearch = evt => {
+  /** 
+   * @description Handles text being entered in the search bar
+   * @param {event} Text being entered in the search bar
+   * @returns {string} Updated value of searchText within state
+   */ 
+  handleSearch = event => {
     this.setState({
       isLoading: true,
-      searchText: evt.target.value
+      searchText: event.target.value
     });
     this.debouncedSearch()
   }
@@ -59,7 +68,6 @@ class Search extends React.Component {
           <SearchBooks
             isLoading={this.state.isLoading}
             searchText={this.state.searchText}
-            setSearchBooks={this.setSearchBooks}
             books={this.state.searchBooks}
             library={this.props.library}
             changeShelf={this.props.changeShelf}

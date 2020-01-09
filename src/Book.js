@@ -1,30 +1,42 @@
 import React from 'react';
 import { isArray, find } from 'lodash'
-// @description Displays a given book.
-// @param {string} title. The title of the book
-// @param {string} bookCoverURL. The url for the cover image of the book.
-// @param {array} authors. Array containing all the authors of a book.
-// @param {string} shelf. The current shelf of the book.
-// @param {function} changeShelf. Changes the shelf of the book.
-// @returns The given book
+
+/**
+ * @description Displays a given book.
+ * 
+ * @param {string} title. The title of the book
+ * 
+ * @param {string} bookCoverURL. The array containing the url for the 
+ * cover image of the book.
+ * 
+ * @param {array} authors. Array containing all the authors of a book.
+ * 
+ * @param {array} library. Array containing all the books currently in 
+ * the user's collection.  
+ * 
+ * @param {string} shelf. The current shelf of the book.
+ * 
+ * @param {function} changeShelf. Changes the shelf of the book.
+ * 
+ * @returns The given book
+ */
+
+
 function Book(props) {
 
   let shelf = props.shelf
 
+  // If the book has no cover image, it isn't rendered.
   if (props.bookCoverURL===undefined) {
     return null
   }
 
+  // If the book exists within props.library, the book's 
+  // shelf prop is changed to the property of the book in the 
+  // collection.
   if (find(props.library, ['id', props.id])!==undefined) {
-    console.log(find(props.library, ['id', props.id]))
-    console.log(find(props.library, ['id', props.id]).shelf)
     shelf = find(props.library, ['id', props.id]).shelf
   }
-
-  // if (props.id==='5CtYoSSxomcC') {
-  //   console.log(props.id)
-  //   console.log(props.library)
-  // }
 
   return(
     <div className="book">

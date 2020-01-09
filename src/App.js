@@ -9,23 +9,8 @@ import Search from './Search.js';
 
 class BooksApp extends React.Component {
   state = {
-    books : [
-      {
-      bookTitle : "To Kill a Mockingbird", 
-      bookAuthor : "Harper Lee", 
-      bookCoverURL : "http://books.google.com/books/content?id=PGR2AwAAQBAJ&printsec=frontcover&img=1&zoom=1&imgtk=AFLRE73-GnPVEyb7MOCxDzOYF1PTQRuf6nCss9LMNOSWBpxBrz8Pm2_mFtWMMg_Y1dx92HT7cUoQBeSWjs3oEztBVhUeDFQX6-tWlWz1-feexS0mlJPjotcwFqAg6hBYDXuK_bkyHD-y&source=gbs_api",
-      bookShelf : "currentlyReading" 
-      },
-      {
-        bookTitle : "Ender's Game", 
-        bookAuthor : "Orson Scott Card", 
-        bookCoverURL : "http://books.google.com/books/content?id=yDtCuFHXbAYC&printsec=frontcover&img=1&zoom=1&imgtk=AFLRE72RRiTR6U5OUg3IY_LpHTL2NztVWAuZYNFE8dUuC0VlYabeyegLzpAnDPeWxE6RHi0C2ehrR9Gv20LH2dtjpbcUcs8YnH5VCCAH0Y2ICaKOTvrZTCObQbsfp4UbDqQyGISCZfGN&source=gbs_api",
-        bookShelf : "currentlyReading" 
-      }
-    ],
-    books2 : [],
+    books2 : []
   }
-
 
   // @description Imports the books from the API
   componentDidMount() {
@@ -47,11 +32,8 @@ class BooksApp extends React.Component {
     if (find(books2, ['id', bookID])===undefined) {
       books2.push(book)
     }
-    // (find(books2, ['id', bookID])===undefined) &&
-    //   books2.push(book)
     find(books2, ['id', bookID]).shelf = event.target.value // Finds the specific book by ID and sets its shelf property
     BooksAPI.update((find(books2, ['id', bookID])), event.target.value) // Updates the API
-    // console.log(BooksAPI.update((find(books2, ['id', bookID])), event.target.value))
     this.setState({ books2 });
   }
 

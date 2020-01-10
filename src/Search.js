@@ -11,8 +11,8 @@ import * as BooksAPI from './BooksAPI';
 class Search extends React.Component {
   state = {
     isLoading: false,
-    searchText : "",
-    searchBooks : []
+    searchText: "",
+    searchBooks: []
   }
 
   /**
@@ -57,7 +57,6 @@ class Search extends React.Component {
   }
 
   render() {
-    console.log(this.state)
     return (
       <div className="search-books">
         <SearchBar

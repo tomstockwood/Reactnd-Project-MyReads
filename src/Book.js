@@ -24,7 +24,7 @@ import { isArray, find } from 'lodash'
 
 function Book(props) {
 
-  let shelf = props.shelf
+  let { shelf } = props
 
   // If the book has no cover image, it isn't rendered.
   if (props.bookCoverURL===undefined) {

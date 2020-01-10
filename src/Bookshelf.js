@@ -28,7 +28,7 @@ function Bookshelf(props) {
                 authors={entry.authors}
                 shelf={entry.shelf}
                 changeShelf={(event) => props.changeShelf(event, entry.id)}
-              ></Book>  
+              />  
             </li>
           ))}
         </ol>

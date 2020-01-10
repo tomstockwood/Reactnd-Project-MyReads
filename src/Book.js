@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types'
 import { isArray, find } from 'lodash'
 
 /**
@@ -6,7 +7,7 @@ import { isArray, find } from 'lodash'
  * 
  * @param {string} title. The title of the book
  * 
- * @param {string} bookCoverURL. The array containing the url for the 
+ * @param {object} bookCoverURL. The object containing the url for the 
  * cover image of the book.
  * 
  * @param {array} authors. Array containing all the authors of a book.
@@ -67,6 +68,15 @@ function Book(props) {
       <div className="book-authors">{isArray(props.authors) && props.authors.join(", ")}</div>
     </div>
   )
+}
+
+Book.propTypes = {
+  title: PropTypes.string,
+  bookCoverURL: PropTypes.object,
+  authors: PropTypes.array,
+  library: PropTypes.array,
+  shelf: PropTypes.string,
+  changeShelf: PropTypes.func
 }
 
 export default Book

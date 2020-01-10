@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types'
 import Book from './Book.js';
 /**
  * @description Displays all books whose author or title contain the 
@@ -59,6 +60,14 @@ function SearchBooks(props) {
       ))}
     </ol>
   )
+}
+
+SearchBooks.propTypes = {
+  isLoading: PropTypes.bool,
+  searchText: PropTypes.string,
+  books: PropTypes.array,
+  library: PropTypes.array,
+  changeShelf: PropTypes.func
 }
 
 export default SearchBooks

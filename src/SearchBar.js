@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom';
 
 /**
@@ -23,5 +24,10 @@ const SearchBar = (props) => (
     </div>
   </div>
 )
+
+SearchBar.propTypes = {
+  searchText: PropTypes.string,
+  handleSearch: PropTypes.func
+}
 
 export default SearchBar

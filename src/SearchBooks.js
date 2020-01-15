@@ -54,7 +54,7 @@ function SearchBooks(props) {
             authors={entry.authors}
             library={props.library}
             shelf={"none"}
-            changeShelf={(event) => props.changeShelf(event, entry.id, entry)}
+            changeShelf={(event) => props.changeShelf(event, entry)}
           />
         </li>
       ))}

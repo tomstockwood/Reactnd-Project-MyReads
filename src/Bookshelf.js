@@ -27,7 +27,7 @@ function Bookshelf(props) {
                 bookCoverURL={entry.imageLinks}
                 authors={entry.authors}
                 shelf={entry.shelf}
-                changeShelf={(event) => props.changeShelf(event, entry.id)}
+                changeShelf={(event) => props.changeShelf(event, entry)}
               />  
             </li>
           ))}

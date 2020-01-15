@@ -1,18 +1,15 @@
 import React from 'react';
 import * as BooksAPI from './BooksAPI';
 import './App.css';
-import { filter, find } from 'lodash';
+import { filter } from 'lodash';
 import { Link, Route } from 'react-router-dom'
 import Bookshelf from './Bookshelf.js';
 import Search from './Search.js';
 
 
 class BooksApp extends React.Component {
-  constructor(props) {
-    super(props)
-    this.state = { books: [] }
-  }
-
+  state = { books: [] }
+  
   // @description Imports the books from the API
   async componentDidMount() {
     try {
@@ -23,18 +20,25 @@ class BooksApp extends React.Component {
     }
   }
   
-  // @description Changes the shelf of a book 
-  // @param {event} Event that fires changeShelf, currently a new option being 
-  // chosen in book-shelf-changer within Book.js
-  // @param {string} bookID - The ID of the book
-  // @returns {array} books - The updated collection of books, with changed shelf.
-  changeShelf = (event, bookID, book) => {
-    let { books } = this.state
-    if (find(books, ['id', bookID]) === undefined) {
-      books.push(book)
+  /**
+   * @description Changes the shelf of a book 
+   * @param {event} Event that fires changeShelf, currently a new option being 
+   * chosen in book-shelf-changer within Book.js
+   * @param {object} book - The book whose shelf is being changed
+   * @returns {array} books - The updated collection of books, with changed shelf.
+   */
+  changeShelf = (event, book) => {
+    const updatedBook = { // A copy of the book with updated shelf
+      ...book,
+      shelf: event.target.value
     }
-    find(books, ['id', bookID]).shelf = event.target.value // Finds the specific book by ID and sets its shelf property
-    BooksAPI.update((find(books, ['id', bookID])), event.target.value) // Updates the API
+    
+    const books = [ // A copy of this.state.books, with the updatedBook appended
+      ...this.state.books.filter(({ id }) => id !== book.id), 
+      updatedBook
+    ]
+
+    BooksAPI.update(updatedBook, event.target.value) // Updates the API
     this.setState({ books });
   }
 
